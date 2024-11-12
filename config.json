@@ -1,0 +1,8 @@
+{
+    "receiver": {
+        "type": "remark_name",  
+        "name": "123"
+    },
+    "message_expire_time": 120,
+    "cleanup_interval": 2
+} 

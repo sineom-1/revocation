@@ -1,4 +1,4 @@
-# Anti-Withdrawal Plugin (防撤回插件)
+# revocation Plugin (防撤回插件)，基于cow issues[2192](https://github.com/zhayujie/chatgpt-on-wechat/issues/2192)修改
 
 一个用于防止微信消息撤回的插件。当检测到消息被撤回时,会将原消息转发给指定接收者。
 

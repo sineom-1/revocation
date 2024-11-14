@@ -2,8 +2,8 @@
 Author: sineom h.sineom@gmail.com
 Date: 2024-11-11 14:17:56
 LastEditors: sineom h.sineom@gmail.com
-LastEditTime: 2024-11-13 15:19:54
-FilePath: /chatgpt-on-wechat/plugins/revocation/revocation.py
+LastEditTime: 2024-11-14 10:33:56
+FilePath: /anti_withdrawal/revocation.py
 Description: 防止撤回消息
 
 Copyright (c) 2024 by sineom, All Rights Reserved. 
@@ -26,7 +26,7 @@ from lib import itchat
     desire_priority=-1,
     namecn="防止撤回",
     desc="防止微信消息撤回插件",
-    version="1.0",
+    version="1.1",
     author="sineom",
 )
 class Revocation(Plugin):
@@ -36,7 +36,7 @@ class Revocation(Plugin):
         if not self.config:
             # 未加载到配置，使用模板中的配置
             self.config = self._load_config_template()
-        self.handlers[Event.ON_HANDLE_CONTEXT] = self.on_handle_context
+        self.handlers[Event.ON_RECEIVE_MESSAGE] = self.on_receive_message
         logger.info("[Revocation] inited")
         # 初始化存储
         self.msg_dict = {}
@@ -194,7 +194,7 @@ class Revocation(Plugin):
         except Exception as e:
             logger.error(f"处理消息失败: {str(e)}")
     
-    def on_handle_context(self, e_context: EventContext):
+    def on_receive_message(self, e_context: EventContext):
         try:
             logger.debug("[Revocation] on_receive_message: %s" % e_context)
             context = e_context['context']
